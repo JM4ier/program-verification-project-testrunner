@@ -181,10 +181,8 @@ class TestResult:
     def is_success(self):
         if self.exception:
             return False
-        elif self.expectFail:
-            return self.encodingFail or len(self.failed) > 0
-        else:
-            return len(self.passed) > 0 and len(self.failed) == 0
+        success = len(self.passed) > 0 and len(self.failed) == 0
+        return success != self.expectFail
 
     def __str__(self):
         e = ''
